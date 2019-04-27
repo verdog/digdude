@@ -3,11 +3,11 @@ version 18
 __lua__
 -- dig!
 -- by verdog
-#include debug.p8
-#include vector.p8
-#include state.p8
-#include statestack.p8
-#include actor.p8
+#include shoehorn/debug.p8
+#include shoehorn/vector.p8
+#include shoehorn/state.p8
+#include shoehorn/statestack.p8
+#include shoehorn/actor.p8
 
 #include main.p8
 __gfx__

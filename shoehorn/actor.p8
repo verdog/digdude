@@ -3,8 +3,8 @@
 --  vector.p8
 
 _actor = {
- position = _vector:new(0,0),
- velocity = _vector:new(0,0),
+ position = nil,
+ velocity = nil,
  friction = 0.95,
 
  sprite=0,
@@ -15,8 +15,11 @@ _actor = {
 }
 
 function _actor:new(a)
+ local a = a or {}
+ a.position = _vector:new()
+ a.velocity = _vector:new()
  self.__index = self
- return setmetatable(a or {}, self)
+ return setmetatable(a, self)
 end
 
 function _actor:update()

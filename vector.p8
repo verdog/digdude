@@ -10,9 +10,7 @@ end
 function _vector:mag()
  -- hacks to avoid overflows
  if (self.x >= 128 or self.y >= 128) then
-  local x = self.x / 8
-  local y = self.y / 8
-  return sqrt(x * x + y * y) * 8
+  return sqrt(self.x * 0x0.0001 * self.x + self.y * 0x0.0001 * self.y) * 0x100
  else
   return sqrt(self.x * self.x + self.y * self.y)
  end
@@ -32,8 +30,8 @@ function _vector:subtract(v)
 end
 _vector.__sub = _vector.subtract
 
-function _vector.dot(v, u)
- return v.x*u.x + v.y*u.y
+function _vector:dot(v)
+ return self.x*v.x + self.y*v.y
 end
 _vector.__mult = _vector.dot
 
@@ -44,10 +42,3 @@ end
 function _vector:str()
  return self.x..","..self.y
 end
-
--- function _vector.mult(v, u)
---  if (type(v) == "number") return v.
---  if type(u) == "table" then
---  elseif type(u) == "number" then
---  end
--- end

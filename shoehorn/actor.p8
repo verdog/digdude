@@ -5,7 +5,7 @@
 _actor = {
  position = _vector:new(0,0),
  velocity = _vector:new(0,0),
- friction=0.95,
+ friction = 0.95,
 
  sprite=0,
  s_flip_x = false,

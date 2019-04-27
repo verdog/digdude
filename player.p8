@@ -5,8 +5,8 @@ _player.sprite = 1
 
 function _player:update()
  get_input()
- self.velocity.x += input_x / 2
- if (input_yp < 0) self.velocity.y = -4
+ self.velocity.x += input_x / 3 * rnd()
+ if (input_yp < 0 and self.position.y >= 120 and rnd() < .4) self.velocity.y = -4
  self.velocity.y += 0.2
 
  self.s_flip_x = self.velocity.x < 0 and true or false 
@@ -20,7 +20,7 @@ function _player:update()
 end
 
 function _player:draw()
- self.sprite = 1 + 10*time() % 2
+ self.sprite = 1 + (10*time() + rnd() % 3 ) % 2
 
  _actor.draw(self)
 end

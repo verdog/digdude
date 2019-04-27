@@ -8,6 +8,9 @@ end
 
 function _debug_draw()
  local y = 0
+
+ printf("cpu: "..stat(1))
+
  for s in all(_debug_buf) do
   print(s, 0, y)
   y += 6

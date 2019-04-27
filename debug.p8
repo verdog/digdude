@@ -10,7 +10,7 @@ function _debug_draw()
  local y = 0
  for s in all(_debug_buf) do
   print(s, 0, y)
-  y += 8
+  y += 6
  end
 end
 

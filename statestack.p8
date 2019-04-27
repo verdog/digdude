@@ -3,10 +3,8 @@
 _statestack = {}
 
 function _statestack:new(o)
- o = o or {}
  self.__index = self
- setmetatable(o, self)
- return o
+ return setmetatable(o or {}, self)
 end
 
 function _statestack:push(s)

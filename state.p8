@@ -1,14 +1,13 @@
 -- game state base class
 
 _state = {
- name = "default_state"
+ name = "default_state",
+ actors = {}
 }
 
 function _state:new(o)
- o = o or {}
  self.__index = self
- setmetatable(o, self)
- return o
+ return setmetatable(o or {}, self)
 end
 
 function _state:enter()
@@ -20,9 +19,13 @@ function _state:exit()
 end
 
 function _state:update()
- print("Updating _state: "..self.name)
+ for a in all(self.actors) do
+  a:update()
+ end
 end
 
 function _state:draw()
- print("Drawing _state: "..self.name)
+ for a in all(self.actors) do
+  a:draw()
+ end
 end

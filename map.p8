@@ -98,3 +98,17 @@ function map_rectcollide(x,y,w,h)
  or map_pointcollide(x+w-1,y) 
  or map_pointcollide(x,y+h-1) 
 end
+
+function map_dig(x, y)
+ map_setblock(x/8,y/8,_blocks.air)
+end
+
+function map_highlight_block(x, y, c)
+ color(c == nil and 6 or c)
+ x = flr(x/8) * 8
+ y = flr(y/8) * 8
+ line(x,y,x+7,y)
+ line(x+7,y+7)
+ line(x,y+7)
+ line(x,y)
+end

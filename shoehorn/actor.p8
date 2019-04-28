@@ -6,8 +6,10 @@
 _actor = {
  pos = nil,
  vel = nil,
- fri = 0.95,
- bounce = 0,
+ acc = 0.3,
+ fri = 0.93,
+
+ in_air = true,
 
  -- hitbox: {offsetx, offsety, width, height}
  hitbox = {0, 0, 8, 8},
@@ -50,8 +52,17 @@ function _actor:update()
   while (not map_rectcollide(self.pos.x, self.pos.y + sgn(self.vel.y)*0.3, self.hitbox[3], self.hitbox[4])) do
    self.pos.y += sgn(self.vel.y)*0.1
   end
+
+  -- update in_air
+  if (sgn(self.vel.y) == 1) self.in_air = false
+
+  -- kill y velocity
   self.vel.y = 0
+ else
+  self.in_air = true
  end
+
+ printf(self.in_air)
 
  self.pos += self.vel
 end

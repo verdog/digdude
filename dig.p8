@@ -10,6 +10,7 @@ __lua__
 #include shoehorn/actor.p8
 #include shoehorn/input.p8
 
+#include camera.p8
 #include player.p8
 #include map.p8
 

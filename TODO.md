@@ -8,6 +8,9 @@
 - play in level
 - break blocks
 
-## gameplaay
-- camera
+## gameplay
++ camera
 - get upgrades
+
+## stretch
+- draw block chunks with scaled up sprites as needed

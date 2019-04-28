@@ -7,14 +7,16 @@ function printf(s)
 end
 
 function _debug_draw()
- local y = 0
+ camera(0,0)
+ local y = 1
 
  printf("cpu: "..stat(1))
 
  for s in all(_debug_buf) do
-  print(s, 0, y)
+  print(s, 1, y, 6)
   y += 6
  end
+ camera(cam.x, cam.y)
 end
 
 function _debug_clear()

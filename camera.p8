@@ -8,7 +8,7 @@ function camera_init()
 end
 
 function camera_update()
- cam = player.position - {x=64,y=64}
+ cam = player.pos - {x=64,y=64}
  -- implicit 0 passed to mid()
  cam.x = mid(cam.x, camera_max_x)
  cam.y = mid(cam.y, camera_max_y)

@@ -4,9 +4,10 @@
 --  map.p8
 
 _actor = {
- position = nil,
- velocity = nil,
- friction = 0.95,
+ pos = nil,
+ vel = nil,
+ fri = 0.95,
+ bounce = 0,
 
  -- hitbox: {offsetx, offsety, width, height}
  hitbox = {0, 0, 8, 8},
@@ -20,34 +21,47 @@ _actor = {
 
 function _actor:new(a)
  local a = a or {}
- a.position = _vector:new()
- a.velocity = _vector:new()
+ a.pos = _vector:new()
+ a.vel = _vector:new()
  self.__index = self
  return setmetatable(a, self)
 end
 
 function _actor:update()
- self.velocity = self.velocity:scale(self.friction)
+ self.vel = self.vel:scale(self.fri)
  
- printf(self.position:str())
- printf(self.velocity:str())
+ printf(self.pos:str())
+ printf(self.vel:str())
 
- self.position += self.velocity
+ -- move x
+ local newx = self.pos.x + self.vel.x
+ if map_rectcollide(newx, self.pos.y, self.hitbox[3], self.hitbox[4]) then
+  -- collision
+  while (not map_rectcollide(self.pos.x + sgn(self.vel.x)*0.3, self.pos.y, self.hitbox[3], self.hitbox[4])) do
+   self.pos.x += sgn(self.vel.x)*0.1
+  end
+  self.vel.x = 0
+ end
+
+ -- move y
+ local newy = self.pos.y + self.vel.y
+ if map_rectcollide(self.pos.x, newy, self.hitbox[3], self.hitbox[4]) then
+  -- collision
+  while (not map_rectcollide(self.pos.x, self.pos.y + sgn(self.vel.y)*0.3, self.hitbox[3], self.hitbox[4])) do
+   self.pos.y += sgn(self.vel.y)*0.1
+  end
+  self.vel.y = 0
+ end
+
+ self.pos += self.vel
 end
 
 function _actor:draw()
  spr(self.sprite, 
-  self.position.x, 
-  self.position.y, 
+  self.pos.x, 
+  self.pos.y, 
   self.s_width,
   self.s_height,
   self.s_flip_x,
   self.s_flip_y);
-end
-
-function _actor:mapcollide()
- return map_rectcollide(
-  self.position.x+self.hitbox[1], 
-  self.position.y+self.hitbox[2],
-  self.hitbox[3], self.hitbox[4])
 end

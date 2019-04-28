@@ -58,6 +58,8 @@ function map_generate()
  map_fill(0,60,32,14,_blocks.air)
  map_fill(0,98,32,14,_blocks.air)
  map_fill(0,119,32,8,_blocks.air) -- final room
+
+ map_fill(6,2,4,4,_blocks.rock)
 end
 
 function map_draw()

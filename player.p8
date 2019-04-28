@@ -5,10 +5,12 @@ _player.sprite = 1
 
 function _player:update()
  get_input()
- self.velocity.x += input_x / 5
- -- self.velocity.y += 0.2
+ self.vel.x += input_x / 5
+ self.vel.y += 0.1
 
- self.s_flip_x = self.velocity.x < 0 and true or false 
+ if (btnp(2)) self.vel.y = -5
+
+ self.s_flip_x = self.vel.x < 0 and true or false 
 
  _actor.update(self)
 end

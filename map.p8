@@ -22,11 +22,11 @@ function map_clear()
 end
 
 function map_getblock(x, y)
- return peek(0x2000 + y*32 + x)
+ return peek(0x2000 + flr(y)*32 + flr(x))
 end
 
 function map_setblock(x, y, block)
- return poke(0x2000 + y*32 + x, block)
+ return poke(0x2000 + flr(y)*32 + flr(x), block)
 end
 
 function map_fill(x, y, w, h, block)
@@ -77,4 +77,22 @@ function map_draw()
    spr(_block_sprites[map_getblock(x,y)+1],x*8,y*8,1,1)
   end
  end
+end
+
+function map_pointcollide(x,y)
+ return map_getblock(x/8,y/8) > 0
+ or x < 0
+ or x > 255
+ or y < 0
+ or y > 1023
+end
+
+function map_rectcollide(x,y,w,h)
+ -- checks corners in this order:
+ -- 1 3
+ -- 4 2
+ return map_pointcollide(x,y) 
+ or map_pointcollide(x+w-1,y+h-1)
+ or map_pointcollide(x+w-1,y) 
+ or map_pointcollide(x,y+h-1) 
 end

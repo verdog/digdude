@@ -8,11 +8,7 @@ function camera_init()
 end
 
 function camera_update()
- if (btn(0)) cam.x -= 3
- if (btn(1)) cam.x += 3
- if (btn(2)) cam.y -= 3
- if (btn(3)) cam.y += 3
-
+ cam = player.position - {x=64,y=64}
  -- implicit 0 passed to mid()
  cam.x = mid(cam.x, camera_max_x)
  cam.y = mid(cam.y, camera_max_y)

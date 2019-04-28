@@ -5,7 +5,7 @@ _player.sprite = 1
 
 function _player:update()
  get_input()
- self.velocity.x += input_x / 3 * rnd()
+ self.velocity.x += input_x / 3
  if (input_yp < 0 and self.position.y >= 120 and rnd() < .4) self.velocity.y = -4
  self.velocity.y += 0.2
 

@@ -1,4 +1,4 @@
--- functions to easily and painlessly debug stuff
+-- functions to painlessly debug stuff
 
 _debug_buf = {}
 

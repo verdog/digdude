@@ -23,3 +23,9 @@ function _statestack:pop()
  self[#self] = nil
  return s
 end
+
+function _statestack:change(s)
+ self.pop()
+ self.push(s)
+ return s
+end

@@ -1,5 +1,5 @@
 -- base class for an actor
--- dependancies:
+-- dependencies:
 --  vector.p8
 
 _actor = {
